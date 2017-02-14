@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <h1>{{msg}}</h1>
+        <trick-nav></trick-nav>
     </div>
 </template>
 
@@ -16,4 +16,8 @@
 </script>
 
 <style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
 </style>
