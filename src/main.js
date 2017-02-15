@@ -5,8 +5,12 @@ import Action from '../deps/action-ui'
 Vue.use(VueRouter)
 Vue.use(Action)
 
-import Nav from './components/Nav/Nav.vue'
+import Nav from './components/Nav.vue'
+import Preview from './components/Preview.vue'
+import Editor from './components/Editor.vue'
 Vue.component(Nav.name, Nav)
+Vue.component(Preview.name, Preview)
+Vue.component(Editor.name, Editor)
 
 const Foo  = {template: '<div>foo</div>'}
 const Bar  = {template: '<div>bar</div>'}

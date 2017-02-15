@@ -1,17 +1,17 @@
 <template>
-    <nav>
-        <div class="main-nav">
+    <nav class="wrapper">
+        <nav class="main-nav">
             <v-menu>
                 <v-menu-item title="根目录" path="/"></v-menu-item>
                 <v-menu-item title="css" path="css"></v-menu-item>
             </v-menu>
-        </div>
-        <div class="sub-nav">
+        </nav>
+        <nav class="sub-nav">
             <v-menu>
                 <v-menu-item title="根目录" path="/"></v-menu-item>
                 <v-menu-item title="css" path="css"></v-menu-item>
             </v-menu>
-        </div>
+        </nav>
     </nav>
 </template>
 
@@ -22,26 +22,21 @@
 </script>
 
 <style scoped lang="less" rel="stylesheet/less">
-    nav {
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        overflow: hidden;
-        width: 400px;
-
+    nav.wrapper {
+        flex-basis: 500px;
         display: flex;
 
-        .main-nav {
+        nav {
             overflow-y: scroll;
-            border-right: 1px solid #555;
+            border-right: 2px solid #eee;
             flex: 1;
-        }
 
-        .sub-nav {
-            overflow-y: scroll;
-            border-right: 1px solid #555;
-            flex: 1;
+            & .main-nav {
+
+            }
+            & .sub-nav {
+
+            }
         }
     }
 </style>
