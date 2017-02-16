@@ -2,8 +2,8 @@
     <div id="app">
         <trick-nav></trick-nav>
         <div class="content">
-            <preview></preview>
-            <editor></editor>
+            <preview :html="html" :css="css"></preview>
+            <editor @html_change="onHTMLChange" @css_change="onCSSChange"></editor>
         </div>
     </div>
 </template>
@@ -13,7 +13,16 @@
     name: 'app',
     data () {
       return {
-        msg: 'Welcome to Your Vue.js App'
+        html: '',
+        css: ''
+      }
+    },
+    methods: {
+      onHTMLChange(code){
+        this.html = code
+      },
+      onCSSChange(code){
+        this.css = code
       }
     }
   }

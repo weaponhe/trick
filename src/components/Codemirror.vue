@@ -3,7 +3,8 @@
         <codemirror v-model="code"
                     :options="options"
                     :hint="true"
-                    ref="editor">
+                    ref="editor"
+                    @changed="codeChange">
         </codemirror>
     </div>
 </template>
@@ -48,10 +49,16 @@
         }
       }
     },
+    methods: {
+      codeChange(newCode){
+        this.$emit("change", newCode)
+      }
+    },
     beforeMount(){
       this.code          = this.placehold
       this.options.mode  = this.mode
       this.options.theme = this.theme
+      this.$emit("change", this.code)
     }
   }
 </script>
