@@ -19,16 +19,11 @@ Vue.component(Preview.name, Preview)
 Vue.component(Editor.name, Editor)
 Vue.component(Codemirror.name, Codemirror)
 
-const Foo  = {template: '<div>foo</div>'}
-const Bar  = {template: '<div>bar</div>'}
 let router = new VueRouter({
-  routes: [{
-    path: '/',
-    component: Foo
-  }, {
-    path: '/2',
-    component: Bar
-  }]
+  routes: [
+    {
+      path: '/'
+    }]
 })
 
 new Vue({

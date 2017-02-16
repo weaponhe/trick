@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <trick-nav></trick-nav>
+        <trick-nav :folderList="folderList"></trick-nav>
         <div class="content">
             <preview :html="html" :css="css"></preview>
             <editor @html_change="onHTMLChange" @css_change="onCSSChange"></editor>
@@ -15,7 +15,8 @@
     data () {
       return {
         html: '',
-        css: ''
+        css: '',
+        folderList: null
       }
     },
     methods: {
@@ -24,7 +25,38 @@
       },
       onCSSChange(code){
         this.css = code
+      },
+      fake(){
+        return [
+          {
+            name: "text",
+            files: [{
+              name: "prety_text",
+              content: "<div>prety_text</div>"
+            }, {
+              name: "shadow_text",
+              content: "<div>shadow_text</div>"
+            }]
+          },
+          {
+            name: "font",
+            files: [{
+              name: "prety_font",
+              content: "<div>prety_font</div>"
+            }, {
+              name: "shadow_font",
+              content: "<div>shadow_font</div>"
+            }]
+          }
+        ]
       }
+    },
+    mounted(){
+      //请求数据，数据格式为{folder:"text",files:[{filename:"prety_text.md",content:"```<div></div><style></style>```"},{...}]}
+      setTimeout(() =>
+      {
+        this.folderList = this.fake()
+      }, 2000)
     }
   }
 </script>
