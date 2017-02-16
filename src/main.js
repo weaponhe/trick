@@ -9,10 +9,12 @@ Vue.use(VueCodeMirror)
 Vue.use(Action)
 
 import Nav from './components/Nav.vue'
+import Sidebar from './components/Sidebar.vue'
 import Preview from './components/Preview.vue'
 import Editor from './components/Editor.vue'
 import Codemirror from './components/Codemirror.vue'
 Vue.component(Nav.name, Nav)
+Vue.component(Sidebar.name, Sidebar)
 Vue.component(Preview.name, Preview)
 Vue.component(Editor.name, Editor)
 Vue.component(Codemirror.name, Codemirror)

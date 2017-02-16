@@ -5,6 +5,7 @@
             <preview :html="html" :css="css"></preview>
             <editor @html_change="onHTMLChange" @css_change="onCSSChange"></editor>
         </div>
+        <sidebar></sidebar>
     </div>
 </template>
 
