@@ -5,7 +5,7 @@ module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
+    publicPath: '/',
     filename: 'build.js'
   },
   module: {
@@ -21,7 +21,11 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+        include: ['node_modules/action-ui'],
+        exclude: /node_modules/,
+        options: {
+          presets: ['es2015'],
+        }
       },
       {
         test: /\.css$/,
