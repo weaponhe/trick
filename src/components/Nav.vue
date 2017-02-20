@@ -7,6 +7,7 @@
                                  :class="{'active-menu':index === selectedFolderIndex}"
                                  :title="folder.name"
                                  :path="{query:{folder:index,file:0}}"
+                                 :autoActive="false"
                                  @click.native="changeFolder(index)">
                     </v-menu-item>
                 </v-menu>
@@ -17,6 +18,7 @@
                                  :class="{'active-menu':index === selectedFileIndex}"
                                  :title="file.name"
                                  :path="{query:{folder:selectedFolderIndex,file:index}}"
+                                 :autoActive="false"
                                  @click.native="changeFile(index)">
                     </v-menu-item>
                 </v-menu>
