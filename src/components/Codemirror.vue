@@ -59,11 +59,14 @@
         this.code = newCode
       }
     },
-    beforeMount(){
+    mounted(){
       this.code          = this.placehold
       this.options.mode  = this.mode
       this.options.theme = this.theme
       this.$emit("change", this.code)
+    },
+    beforeMount(){
+
     }
   }
 </script>

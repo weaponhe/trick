@@ -25,8 +25,15 @@ Vue.component(Codemirror.name, Codemirror)
 let router = new VueRouter({
   routes: [
     {
-      path: '/'
-    }]
+      name: 'trick',
+      path: '/trick'
+    },
+    {
+      name: 'default',
+      path: '/*',
+      redirect: {name: 'trick'}
+    }
+  ]
 })
 
 new Vue({

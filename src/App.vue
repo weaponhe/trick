@@ -22,11 +22,7 @@
     watch: {
       '$route.query': function ()
       {
-        let trick = this.folderList[this.$route.query.folder].files[this.$route.query.file].content
-        let re    = /<style>(.*)<\/style>/
-        let css   = re.exec(trick)
-        this.css  = css && css[1]
-        this.html = trick.replace(re, '')
+        this.updateCode()
       }
     },
     methods: {
@@ -35,6 +31,20 @@
       },
       onCSSChange(code){
         this.css = code
+      },
+      updateCode(){
+        if (this.folderList &&
+          this.folderList[this.$route.query.folder] &&
+          this.folderList[this.$route.query.folder].files &&
+          this.folderList[this.$route.query.folder].files[this.$route.query.file] &&
+          this.folderList[this.$route.query.folder].files[this.$route.query.file].content)
+        {
+          let trick = this.folderList[this.$route.query.folder].files[this.$route.query.file].content
+          let re    = /<style>(.*)<\/style>/
+          let css   = re.exec(trick)
+          this.css  = css && css[1]
+          this.html = trick.replace(re, '')
+        }
       },
       fake(){
         return [
@@ -62,10 +72,17 @@
       }
     },
     mounted(){
-//      //请求数据，数据格式为{folder:"text",files:[{filename:"prety_text.md",content:"```<div></div><style></style>```"},{...}]}
+      console.log()
+      if (this.$route.name === 'trick') {
+        if (!this.$route.query.folder || !this.$route.query.file) {
+          this.$router.replace({name: 'trick', query: {folder: 0, file: 0}})
+        }
+      }
+
       setTimeout(() =>
       {
         this.folderList = this.fake()
+        this.updateCode()
       }, 0)
 //
 //      this.$http.get('/data').then(response =>
@@ -76,6 +93,7 @@
 //      {
 //        console.log(response)
 //      });
+
     }
   }
 </script>
