@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-var VueResource = require('vue-resource');
+import VueResource  from 'vue-resource'
 
 import App from './App.vue'
-import Action from '../deps/action-ui'
+import Action from 'action-ui'
 import VueCodeMirror from 'vue-codemirror'
+
 
 Vue.use(VueRouter)
 Vue.use(VueResource);
