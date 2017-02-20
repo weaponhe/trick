@@ -54,6 +54,11 @@
         this.$emit("change", newCode)
       }
     },
+    watch: {
+      placehold(newCode){
+        this.code = newCode
+      }
+    },
     beforeMount(){
       this.code          = this.placehold
       this.options.mode  = this.mode

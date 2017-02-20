@@ -2,12 +2,12 @@
     <div class="wrapper">
         <trick-codemirror mode="text/html"
                           theme="neo"
-                          placehold="<div>Hello trick!</div>"
+                          :placehold="html"
                           @change="onHTMLChange">
         </trick-codemirror>
         <trick-codemirror mode="text/css"
                           theme="neo"
-                          placehold="div{color:red}"
+                          :placehold="css"
                           @change="onCSSChange">
 
         </trick-codemirror>
@@ -18,6 +18,16 @@
 
   export default {
     name: 'editor',
+    props: {
+      html: {
+        type: String,
+        default: '<div>Hello trick!</div>'
+      },
+      css: {
+        type: String,
+        default: 'div{color:red}'
+      }
+    },
     methods: {
       onHTMLChange(code){
         this.$emit('html_change', code)

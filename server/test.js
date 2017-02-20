@@ -1,9 +1,5 @@
 const fs    = require('fs')
-let path    = require('path');
-let express = require('express');
-let app     = express();
-
-//read data
+const path  = require('path')
 let baseDir = path.resolve(__dirname, '../data')
 let data    = []
 let folders = fs.readdirSync(baseDir)
@@ -20,22 +16,4 @@ folders.forEach((folderName) =>
   data.push(folderObj)
 })
 
-app.use(express.static(path.resolve(__dirname, '../dist')));
-app.get('/', function (req, res)
-{
-  res.sendFile(path.resolve(__dirname, '../index.html'));
-});
-
-app.get('/data', function (req, res)
-{
-  res.json(data)
-});
-
-let server = app.listen(3000, function ()
-{
-  let host = server.address().address;
-  let port = server.address().port;
-
-  console.log('app listening at http://%s:%s', host, port);
-});
-
+console.log(data[1])
