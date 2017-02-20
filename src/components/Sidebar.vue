@@ -18,6 +18,7 @@
 <style scoped lang="less" rel="stylesheet/less">
     .wrapper {
         position: absolute;
+        z-index: 1000;
         right: 0;
         width: 250px;
         height: 100%;
