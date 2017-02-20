@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "action-ui": "^0.0.13",
+    "express": "^4.14.1",
     "vue": "^2.1.0",
     "vue-codemirror": "^2.1.8",
     "vue-router": "^2.2.1"
