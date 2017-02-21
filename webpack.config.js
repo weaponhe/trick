@@ -21,11 +21,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: ['node_modules/action-ui'],
-        exclude: /node_modules/,
-        options: {
-          presets: ['es2015'],
-        }
+        exclude: /node_modules/
       },
       {
         test: /\.css$/,
