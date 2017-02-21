@@ -9,7 +9,7 @@
     "start": "node server/app.js"
   },
   "dependencies": {
-    "action-ui": "^0.0.21",
+    "action-ui": "^0.0.22",
     "express": "^4.14.1",
     "vue": "^2.1.0",
     "vue-codemirror": "^2.1.8",
