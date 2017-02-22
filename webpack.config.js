@@ -2,11 +2,15 @@ var path    = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: './src/main.js',
+  // entry: './src/main.js',
+  entry: {
+    main: './src/main.js'
+    // vendor: 'vue-codemirror'
+  },
   output: {
+    filename: '[name].js',
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/',
-    filename: 'build.js'
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -21,7 +25,11 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        query: {
+          presets: [['es2015', {modules: false}]],
+          plugins: ['syntax-dynamic-import']
+        }
       },
       {
         test: /\.css$/,
@@ -69,6 +77,9 @@ if (process.env.NODE_ENV === 'production') {
         NODE_ENV: '"production"'
       }
     }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   names: ['vendor']
+    // }),
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,
       compress: {

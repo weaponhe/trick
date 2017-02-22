@@ -3,15 +3,29 @@
         <codemirror v-model="code"
                     :options="options"
                     :hint="true"
-                    ref="editor"
+                    ref="codemirror"
                     @changed="codeChange">
         </codemirror>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
+  let vm = {}
   export default {
     name: 'trick-codemirror',
+    created () {
+      vm = this;
+    },
+    components: {
+      codemirror: (resolve) =>
+      {
+        require(['vue-codemirror/codemirror.vue'], (component) =>
+        {
+          resolve(component);
+          vm.$emit("loaded")
+        })
+      }
+    },
     props: {
       mode: {
         type: String,
@@ -29,6 +43,7 @@
     data(){
       return {
         code: '',
+        loading: false,
         options: {
           // 下面所有配置同Codemirror配置，均为可选
           tabSize: 2,
@@ -64,9 +79,6 @@
       this.options.mode  = this.mode
       this.options.theme = this.theme
       this.$emit("change", this.code)
-    },
-    beforeMount(){
-
     }
   }
 </script>
@@ -80,7 +92,9 @@
     }
 
     .CodeMirror {
-        height: 100%;
+        height: 100% !important;
         width: 100%;
     }
 </style>
+
+

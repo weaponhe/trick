@@ -1,16 +1,25 @@
 <template>
     <div class="wrapper">
-        <trick-codemirror mode="text/html"
-                          theme="neo"
-                          :placehold="html"
-                          @change="onHTMLChange">
-        </trick-codemirror>
-        <trick-codemirror mode="text/css"
-                          theme="neo"
-                          :placehold="css"
-                          @change="onCSSChange">
+        <transition name="fade">
+            <div class="spinner-wrapper" v-if="loading">
+                <div class="spinner-content">loading...</div>
+            </div>
+        </transition>
 
-        </trick-codemirror>
+        <div class="editor-wrapper">
+            <trick-codemirror mode="text/html"
+                              theme="neo"
+                              :placehold="html"
+                              @change="onHTMLChange"
+                              @loaded="test">
+            </trick-codemirror>
+            <trick-codemirror mode="text/css"
+                              theme="neo"
+                              :placehold="css"
+                              @change="onCSSChange"
+                              @loaded="test">
+            </trick-codemirror>
+        </div>
     </div>
 </template>
 
@@ -18,6 +27,11 @@
 
   export default {
     name: 'editor',
+    data(){
+      return {
+        loading: true
+      }
+    },
     props: {
       html: {
         type: String,
@@ -34,6 +48,9 @@
       },
       onCSSChange(code){
         this.$emit('css_change', code)
+      },
+      test(){
+        this.loading = false
       }
     }
   }
@@ -42,6 +59,28 @@
 <style scoped lang="less" rel="stylesheet/less">
     .wrapper {
         flex: 1;
-        display: flex;
+        .spinner-wrapper {
+            /*position: relative;*/
+            width: 100%;
+            height: 100%;
+            /*background: #000;*/
+        }
+        .editor-wrapper {
+            /*flex: 1;*/
+            /*position: relative;*/
+            width: 100%;
+            height: 100%;
+            display: flex;
+
+        }
+    }
+
+    .fade-enter-active, .fade-leave-active {
+        transition: all .5s ease;
+    }
+
+    .fade-enter, .fade-leave-active {
+        opacity: 0;
+        /*transform: scale();*/
     }
 </style>
