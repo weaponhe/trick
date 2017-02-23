@@ -40,7 +40,7 @@
           this.folderList[this.$route.query.folder].files[this.$route.query.file].content)
         {
           let trick = this.folderList[this.$route.query.folder].files[this.$route.query.file].content
-          let re    = /<style>(.*)<\/style>/
+          let re    = /<style>([\s\S]*)<\/style>/
           let css   = re.exec(trick)
           this.css  = css && css[1]
           this.html = trick.replace(re, '')
@@ -72,27 +72,27 @@
       }
     },
     mounted(){
-      console.log()
       if (this.$route.name === 'trick') {
         if (!this.$route.query.folder || !this.$route.query.file) {
           this.$router.replace({name: 'trick', query: {folder: 0, file: 0}})
         }
       }
 
-      setTimeout(() =>
+//      setTimeout(() =>
+//      {
+//        this.folderList = this.fake()
+//        this.updateCode()
+//      }, 0)
+
+      this.$http.get('http://localhost:8080/data').then(response =>
       {
-        this.folderList = this.fake()
-        this.updateCode()
-      }, 0)
-//
-//      this.$http.get('/data').then(response =>
-//      {
-//        this.folderList = response.body
-//
-//      }, response =>
-//      {
-//        console.log(response)
-//      });
+        this.folderList = response.body
+        console.log(this.folderList)
+
+      }, response =>
+      {
+        console.log(response)
+      });
 
     }
   }
