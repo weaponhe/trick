@@ -87,8 +87,7 @@
       this.$http.get('http://localhost:8080/data').then(response =>
       {
         this.folderList = response.body
-        console.log(this.folderList)
-
+        this.updateCode()
       }, response =>
       {
         console.log(response)

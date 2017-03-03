@@ -42,7 +42,11 @@
           less.render(scoped_code, (e, {css}) =>
           {
             sheet.innerHTML = css;
-            this.root.appendChild(sheet)
+            if (this.root.lastChild.nodeName.toUpperCase() === 'STYLE') {
+              this.root.replaceChild(sheet, this.root.lastChild)
+            } else {
+              this.root.appendChild(sheet)
+            }
           });
         }
         catch (e) {
